@@ -30,7 +30,7 @@ public class AbstractClas {
 
 	@AfterMethod
 	public void after() {
-//		driver.close();
+		driver.close();
 	}
 
 }
