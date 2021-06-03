@@ -38,14 +38,21 @@ public class Category extends AbstractClas {
 	
 	@Test
 	public void addCategoryVerifyReqField() {
+		LoginActions loginAction = new LoginActions(driver);
+		loginAction.login("Admin", "Admin@123");
+
+		WebElement text = driver.findElement(By.linkText("Site administration"));
+		text.click();
+
+		courseNavigation = new CourseNavigation(driver);
 		courseNavigation.addCategory().click();
 		
 		CategoryAction category = new CategoryAction(driver);
-		String categoryName = "Network1" + RandomString.make(5);
+		//String categoryName = "Network1" + RandomString.make(5);
 		category.add("Top", "", RandomString.make(10),
 				"here we are introducing different type off languages");
 
-		Assert.assertEquals(categoryName, driver.findElement(By.linkText(categoryName)).getText());
+		Assert.assertEquals("Required", driver.findElement(By.id("id_error_name")).getText());
 		
 	}
 }
